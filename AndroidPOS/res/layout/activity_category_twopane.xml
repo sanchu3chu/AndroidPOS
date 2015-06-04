@@ -1,0 +1,71 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    android:baselineAligned="false"
+    android:divider="?android:attr/dividerHorizontal"
+    android:orientation="horizontal"
+    android:showDividers="middle"
+    tools:context=".CategoryListActivity" >
+
+    <!--
+    This layout is a two-pane layout for the Products
+    master/detail flow. See res/values-large/refs.xml and
+    res/values-sw600dp/refs.xml for an example of layout aliases
+    that replace the single-pane version of the layout with
+    this two-pane version.
+
+    For more on layout aliases, see:
+    http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
+    -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="3">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/activity_vertical_margin">
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@android:drawable/ic_menu_search"
+                    android:scaleType="fitStart"
+                    />
+            </FrameLayout>
+            <EditText style="@style/FontMiddle"
+                android:id="@+id/id_search_text_box"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:lines="1"
+                android:inputType="text"
+                />
+        </LinearLayout>
+        <fragment
+            android:id="@+id/category_list"
+            android:name="com.ricoh.pos.CategoryListFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@android:layout/list_content" />
+    </LinearLayout>
+    <FrameLayout style="@style/FontMiddle"
+        android:id="@+id/category_detail_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="9" />
+    
+    <FrameLayout
+        android:id="@+id/total_payment_container"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2" />
+
+</LinearLayout>

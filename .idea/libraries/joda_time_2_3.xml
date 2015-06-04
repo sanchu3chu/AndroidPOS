@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="joda-time-2.3">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AndroidPOS/3rdParty/Caldroid-1.0/Caldroid/libs/joda-time-2.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

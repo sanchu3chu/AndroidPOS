@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/register_confirm_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+    
+    <TableRow>
+        <TextView style="@style/FontLarge"
+            android:id="@+id/beforwTotalAmountText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/undiscounted_price"
+	        android:textAlignment="center"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView style="@style/FontMiddle"
+	        android:id="@+id/beforwTotalAmountView"
+	        android:layout_width="@dimen/register_confirm_table_row_value_row_width"
+	        android:layout_height="wrap_content"
+	        android:textAlignment="center"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+            android:padding="@dimen/common_padding" />
+
+        <TextView style="@style/FontLarge"
+	        android:id="@+id/userAttributeText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:textAlignment="center"
+	        android:text="@string/user_attribute_label"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+	    <Spinner
+	    	android:id="@+id/spinner1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:drawSelectorOnTop="true"/>
+
+    </TableRow>
+
+    <TableRow>
+        <TextView style="@style/FontLarge"
+            android:id="@+id/discountValueText"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+	        android:text="@string/discount"
+	        android:textAlignment="center"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <LinearLayout
+            android:layout_width="@dimen/register_confirm_table_row_value_row_width"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingRight="@dimen/common_padding">
+            <EditText style="@style/FontMiddle"
+                android:id="@+id/discountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="numberDecimal"
+                android:textAlignment="center"
+                android:textAppearance="?android:attr/textAppearanceLarge" />
+            <TextView style="@style/FontMiddle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:text="@string/currency_india"
+                android:textAppearance="?android:attr/textAppearanceLarge"/>
+        </LinearLayout>
+	</TableRow>
+	   
+    <TableRow>
+        <TextView style="@style/FontLarge"
+            android:id="@+id/textView1"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="@string/title_total_payment"
+	        android:textAlignment="center"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+        <TextView style="@style/FontMiddle"
+            android:id="@+id/totalPaymentView"
+	        android:layout_width="@dimen/register_confirm_table_row_value_row_width"
+	        android:layout_height="wrap_content"
+	        android:textAlignment="center"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+            android:padding="@dimen/common_padding" />
+    </TableRow>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="horizontal" >
+
+        <Button style="@style/FontLarge"
+            android:id="@+id/cancel_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/cancel"
+            android:textAlignment="center" />
+
+        <Button style="@style/FontLarge"
+            android:id="@+id/ok_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/ok"
+            android:textAlignment="center" />
+    </LinearLayout>
+    
+</TableLayout>

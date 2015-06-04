@@ -1,0 +1,5 @@
+include ':caldroid'
+include ':app'
+
+project(':caldroid').projectDir = new File('./AndroidPOS/3rdParty/Caldroid-1.0/Caldroid')
+project(':app').projectDir = new File('./AndroidPOS')

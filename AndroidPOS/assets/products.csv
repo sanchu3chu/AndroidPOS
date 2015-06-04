@@ -1,0 +1,88 @@
+S No.,Product Id,Category,Office Name,Product Name,Unit Selling Price(Piece),No. of Pieces in Box,Unit Selling Price(Box),Tax Type,Tax/Vat Percentage
+1,20,Cookie,Mathura(DO) - Division Office,Godrej No.1 Sandle -90 gm,23.69,54,23.45,Sale Tax  ,14
+2,57,Soap,Mathura(DO) - Division Office,Nirma Sudha Salt,7.89,50,7.81,Sale Tax  ,0
+3,72,Cookie,Mathura(DO) - Division Office,Parle Orange Cream,4.05,144,4.01,Sale Tax  ,14
+4,73,Cookie,Mathura(DO) - Division Office,Parle-G - 88 gm,4.1,144,4.06,Sale Tax  ,14
+5,83,Cookie,Mathura(DO) - Division Office,Coconut -16 gm,0.79,400,0.78,Sale Tax  ,14
+6,88,Cookie,Mathura(DO) - Division Office,Classic Cream 65 gm ,3.93,120,3.89,Sale Tax  ,14
+7,90,Cookie,Mathura(DO) - Division Office,CNC - 75 gm ,3.95,120,3.91,Sale Tax  ,14
+8,93,Cookie,Mathura(DO) - Division Office,Priyagold SNAX-75gm ,3.93,120,3.89,Sale Tax  ,14
+9,103,Shampoo,Mathura(DO) - Division Office,Chik shampoo Rs 0.5,8.81,144,8.72,Sale Tax  ,14
+10,104,Shampoo,Mathura(DO) - Division Office,Chik Shampoo Rs.1,15.86,72,15.7,Sale Tax  ,14
+11,105,Hair oil,Mathura(DO) - Division Office,Clinic plus -0.50 paise,7.18,64,7.11,Sale Tax  ,14
+12,108,Hair oil,Mathura(DO) - Division Office,Dabur Amla -50 ml,15.45,120,15.3,Sale Tax  ,14
+13,109,Hair oil,Mathura(DO) - Division Office,Dabur Amla -200 ml,65.88,36,65.22,Sale Tax  ,14
+14,111,Shampoo,Mathura(DO) - Division Office,Dabur Vatika HC Shampoo Rs 1,11.86,48,11.74,Sale Tax  ,14
+15,112,Hair oil,Mathura(DO) - Division Office,Dabur Amla 100 ml,31.85,60,31.53,Sale Tax  ,14
+16,114,Hair oil,Mathura(DO) - Division Office,Navratan oil 3.5ml,38.27,64,37.89,Sale Tax  ,5
+17,126,Washing Powder,Mathura(DO) - Division Office,Ghari - Rs. 5,3.96,100,3.92,Sale Tax  ,14
+18,127,Washing Powder,Mathura(DO) - Division Office,Ghari Detergent Powder Rs. 10,8.06,80,7.98,Sale Tax  ,14
+19,128,Washing Powder,Mathura(DO) - Division Office,Ghari Deterngent Powder Rs 20,16.17,40,16.01,Sale Tax  ,14
+20,195,Candy,Mathura(DO) - Division Office,Alpenliebe Creamfill,645.7,1,639.24,Sale Tax  ,5
+21,232,Tooth paste,Mathura(DO) - Division Office,Babool paste -50 gm,7.7,240,7.62,Sale Tax  ,14
+22,246,Tooth paste,Mathura(DO) - Division Office,Dabur Lal Dant Manjan-60 gm,16.5,144,16.33,Sale Tax  ,14
+23,321,Medicine,Mathura(DO) - Division Office,Eno,29.05,1,28.76,Sale Tax  ,5
+24,430,Food,Mathura(DO) - Division Office,Maggi Noodles 45 gm,4.04,252,4,Sale Tax  ,14
+25,752,Snack,Mathura(DO) - Division Office,Namkeen Haldiram 25gm,3.65,480,3.61,Sale Tax  ,5
+26,888,Chocolate,Mathura(DO) - Division Office,Nestle Chotu Munch,88.39,16,87.51,Sale Tax  ,14
+27,892,Cookie,Mathura(DO) - Division Office,Parle G - 38 gm,1.64,360,1.62,Sale Tax  ,14
+28,899,Tea,Mathura(DO) - Division Office,Mohini Tea - Rs.10,70.89,40,70.18,Sale Tax  ,5
+29,901,Tea,Mathura(DO) - Division Office,Mohini Tea 250 gm - Rs.44,41.47,96,41.06,Sale Tax  ,5
+30,967,Candy,Mathura(DO) - Division Office,Center Fruit - Rs.120,92.8,16,91.87,Sale Tax  ,14
+31,1075,Washing Powder,Mathura(DO) - Division Office,Tide Powder - Rs.10,7.9,60,7.82,Sale Tax  ,14
+32,1080,Spice,Mathura(DO) - Division Office,Eastern Garam Masala - Rs.5,3.24,150,3.21,Sale Tax  ,5
+33,1081,Spice,Mathura(DO) - Division Office,Eastern Chole Masala - Rs.5,3.24,150,3.21,Sale Tax  ,5
+34,1084,Food,Mathura(DO) - Division Office,Maggi Noodles - Rs.10,8,96,7.92,Sale Tax  ,14
+35,1107,Candy,Mathura(DO) - Division Office,Lolloipop - Rs.115,99.26,12,98.27,Sale Tax  ,5
+36,1108,Food,Mathura(DO) - Division Office,Spout - Rs.150,105.75,16,104.69,Sale Tax  ,14
+37,1111,Candy,Mathura(DO) - Division Office,Lotte Coffee - Rs.400,318.02,4,314.84,Sale Tax  ,14
+38,1120,Candy,Mathura(DO) - Division Office,Nestle Eclairs - PolyPack - Rs.60,44.66,30,44.21,Sale Tax  ,14
+39,1126,Others,Mathura(DO) - Division Office,Shakti - Cell "R20" Power,209,12,206.91,Sale Tax  ,5
+40,1134,Candy,Mathura(DO) - Division Office,Nestle Polo Rs.2,75.77,36,75.01,Sale Tax  ,14
+41,1161,Tooth paste,Mathura(DO) - Division Office,Cibaca Toothpaste 50 gm,8.05,144,7.97,Sale Tax  ,14
+42,1162,Tooth paste,Mathura(DO) - Division Office,Cibaca Toothpaste 100 gm,16.96,144,16.79,Sale Tax  ,14
+43,1224,Shoes,Mathura(DO) - Division Office,Reebok U Sole - Men,89.81,1,88.91,Sale Tax  ,0
+44,1225,Shoes,Mathura(DO) - Division Office,Reebok U Sole - Women,87.95,1,87.07,Sale Tax  ,0
+45,1239,Soap,Mathura(DO) - Division Office,Superia Soap - Sandal - 80X3 Gms.,22.41,48,22.19,Sale Tax  ,14
+46,1259,Soap,Mathura(DO) - Division Office,New Godrej No.1- 75 gm (Rs.30),28.07,50,27.79,Sale Tax  ,14
+47,1267,Food,Mathura(DO) - Division Office,Dharti Daal - Arhar - 250gm,14.31,1000,14.17,Sale Tax  ,1
+48,1270,Food,Mathura(DO) - Division Office,Dharti Daal - Chana - 500gm,27.54,1000,27.26,Sale Tax  ,1
+49,1271,Food,Mathura(DO) - Division Office,Dharti Daal - Masoor - 250gm,11.2,1000,11.09,Sale Tax  ,1
+50,1273,Food,Mathura(DO) - Division Office,Dharti Daal - Moong - 250gm,13.12,1000,12.99,Sale Tax  ,1
+51,1277,Food,Mathura(DO) - Division Office,Dharti Daal - Urad - 250gm,12.75,1000,12.62,Sale Tax  ,1
+52,1284,Medicine,Mathura(DO) - Division Office,Minimix,64.33,12,63.69,Sale Tax  ,0
+53,1324,Soap,Mathura(DO) - Division Office,Dr. Adv Det. Cake - Rs.5 gm,3.9,120,3.86,Sale Tax  ,14
+54,1332,Spice,Mathura(DO) - Division Office,Haldi Powder,13.4,1,13.27,Sale Tax  ,5
+55,1333,Spice,Mathura(DO) - Division Office,Dhaniya Powder,13.4,1,13.27,Sale Tax  ,5
+56,1379,Washing Powder,Mathura(DO) - Division Office,Ghari - Rs. 10,8,48,7.92,Sale Tax  ,14
+57,1390,Tooth paste,Mathura(DO) - Division Office,Toothbrush - Right Buy,65.78,1,65.12,Sale Tax  ,14
+58,1391,Soap,Mathura(DO) - Division Office,Superia Soap - 1*3,20.5,48,20.29,Sale Tax  ,14
+59,1392,Soap,Mathura(DO) - Division Office,Lux Soap - Rs.10,7.89,144,7.81,Sale Tax  ,14
+60,1393,Soap,Mathura(DO) - Division Office,Lifebuoy Soap - Rs.10,7.9,144,7.82,Sale Tax  ,14
+61,1394,Stationaly,Mathura(DO) - Division Office,Pencil - Right Buy,113,1,111.87,Sale Tax  ,5
+62,1395,Stationaly,Mathura(DO) - Division Office,Sketch Pen,12.55,40,12.42,Sale Tax  ,5
+63,1401,Washing Powder,Mathura(DO) - Division Office,Ghari Powder 1 KG,35.29,25,34.94,Sale Tax  ,14
+64,1421,Cookie,Mathura(DO) - Division Office,Sunfeast Cream [MRP Rs.5],3.82,144,3.78,Sale Tax  ,14
+65,1422,Washing Powder,Mathura(DO) - Division Office,Rin Washin powder 224 gm,7.47,60,7.4,Sale Tax  ,14
+66,1423,Soap,Mathura(DO) - Division Office,Lux 125 gm 1*3,62.5,30,61.87,Sale Tax  ,14
+67,1440,Tooth paste,Mathura(DO) - Division Office,Close up - Rs 10,93,13,92.07,Sale Tax  ,14
+68,1446,Washing Powder,Mathura(DO) - Division Office,  Rin Advance Bar-100gm.,8,60,7.92,Sale Tax  ,14
+69,1450,Tea,Mathura(DO) - Division Office,Nutrine Coffee,261,6,258.39,Sale Tax  ,5
+70,1451,Candy,Mathura(DO) - Division Office,Nutrine Gold,261.9,6,259.28,Sale Tax  ,5
+71,1509,Washing Powder,Mathura(DO) - Division Office,Ghari Washing Powder - 3kg,107.18,10,106.11,Sale Tax  ,14
+72,1510,Soap,Mathura(DO) - Division Office,Breeze Bathing Soap,23.92,30,23.68,Sale Tax  ,14
+73,1511,Candy,Mathura(DO) - Division Office,Alpenliebe - 3.750 kg,662.99,1,656.36,Sale Tax  ,5
+74,1523,Candy,Mathura(DO) - Division Office,Dairy Milk Shots,89.47,1,88.58,Sale Tax  ,14
+75,1548,Drink,Mathura(DO) - Division Office,Limca 2.ltr,47.37,9,46.9,Sale Tax  ,14
+76,1549,Drink,Mathura(DO) - Division Office,Thums-Up 2.ltr,47.37,9,46.9,Sale Tax  ,14
+77,1556,Washing Powder,Mathura(DO) - Division Office,Wheel Washing 1 kg,31.75,25,31.43,Sale Tax  ,14
+78,1557,Shampoo,Mathura(DO) - Division Office,Clinic Plus 1 rs,10.96,48,10.85,Sale Tax  ,14
+79,1571,Drink,Mathura(DO) - Division Office,Sprite 2 liter,48.25,9,47.77,Sale Tax  ,14
+80,1572,Drink,Mathura(DO) - Division Office,Fanta 2 liter,48.25,9,47.77,Sale Tax  ,14
+81,1573,Washing Powder,Mathura(DO) - Division Office,Wheel active Bar Rs- 10,7.28,50,7.21,Sale Tax  ,14
+82,1598,Washing Powder,Mathura(DO) - Division Office,Kamal Ujala 25 gm,43.81,50,43.37,Sale Tax  ,5
+83,1599,Washing Powder,Mathura(DO) - Division Office,Kamal Ujala 50 gm,114.28,30,113.14,Sale Tax  ,5
+84,1602,Tooth paste,Mathura(DO) - Division Office,Lotus Tooth Brush,70.17,48,69.47,Sale Tax  ,14
+85,1603,Others,Mathura(DO) - Division Office,Steel Scrub,59.64,30,59.04,Sale Tax  ,14
+86,1640,Tooth paste,Mathura(DO) - Division Office,Tooth Paste 40gm - Personal,5.83,12,5.77,Sale Tax  ,14
+87,1641,Soap,Mathura(DO) - Division Office,Shaving Cream 70gm - Globe,11.57,12,11.45,Sale Tax  ,14
