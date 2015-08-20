@@ -1,7 +1,5 @@
 package com.ricoh.pos;
 
-import java.text.NumberFormat;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -17,11 +15,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ricoh.pos.data.OrderUpdateInfo;
 import com.ricoh.pos.model.RegisterManager;
 import com.ricoh.pos.model.UpdateOrderListener;
+
+import java.text.NumberFormat;
 
 public class RegisterConfirmFragment extends Fragment implements UpdateOrderListener{
 	// This is the maximum fraction digits for total payment to display.
@@ -145,10 +144,7 @@ public class RegisterConfirmFragment extends Fragment implements UpdateOrderList
 			} else {
 				try {
 					registerManager.updateDiscountValue(Double.parseDouble(s.toString()));
-				} catch (IllegalArgumentException e)
-				{
-					Toast.makeText(getActivity().getBaseContext(), R.string.discount_error, Toast.LENGTH_LONG).show();
-					registerManager.updateDiscountValue(0);
+				} catch (IllegalArgumentException e) {
 				}
 			}
 		}

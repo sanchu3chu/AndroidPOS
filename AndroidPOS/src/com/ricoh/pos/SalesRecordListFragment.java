@@ -91,7 +91,7 @@ public class SalesRecordListFragment extends ListFragment {
 				getActivity(),
 				android.R.layout.simple_list_item_activated_1,
 				android.R.id.text1,
-				getSalesRecordListTitles(this.selectedDate)));
+				getSalesRecordListTitles()));
 	}
 
 	@Override
@@ -110,7 +110,7 @@ public class SalesRecordListFragment extends ListFragment {
 		});
 	}
 
-	private ArrayList<String> getSalesRecordListTitles(Date date) {
+	private ArrayList<String> getSalesRecordListTitles() {
 		//ArrayList<SingleSalesRecord> records =  SalesRecordManager.getInstance().restoreSingleSalesRecordsOfTheDay(date);
 		ArrayList<String> titles = new ArrayList<String>();
 

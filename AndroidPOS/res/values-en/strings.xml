@@ -21,22 +21,24 @@
     <string name="zero_order_error">उत्पादों की संख्या डाले</string>
     <string name="title_oneday_total_sales">कुल बिरी</string>
     <string name="title_oneday_total_revenue">कुल लाभ</string>
+    <string name="title_oneday_total_discount">कुल छूट</string>
+    <string name="title_oneday_total_net_profit">कुल शुद्ध लाभ</string>
     <string name="title_delete">बिक्री के रिकॉर्ड को हटा दे</string>
     <string name="undiscounted_price">छूट से पहले कुल कीमत</string>
     <string name="success_deleted_message">बिक्री रिकॉर्ड को हटाने में सफल रहे</string>
     <string name="error_deleted_message">बिक्री रिकॉर्ड को हटाने में विफल रहे</string>
     <string name="sales_record_delete_confirm_message">आप बिक्री रिकॉर्ड को हटाना चाहते हैं?</string>
-  	<string-array name="user_attributes">
-    	<item>10 साल से कम</item>
+    <string-array name="user_attributes">
+        <item>10 साल से कम</item>
         <item>10 साल से ज्यादा</item>
-    	<item>20 से 29 के बीच</item>
-    	<item>30 से 39  के बीच</item>
-    	<item>40 से 49 के बीच</item>
-    	<item>50 से 59 के बीच</item>
-    	<item>60 से 70 के बीच</item>
+        <item>20 से 29 के बीच</item>
+        <item>30 से 39  के बीच</item>
+        <item>40 से 49 के बीच</item>
+        <item>50 से 59 के बीच</item>
+        <item>60 से 70 के बीच</item>
         <item>अन्य</item>
     </string-array>
-  	<string name="user_attribute_label">विशेषता</string>
+    <string name="user_attribute_label">विशेषता</string>
     <string name="close">close</string>
     <string name="error_image_file_not_found">Product image is not found.</string>
 

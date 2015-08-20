@@ -1,11 +1,12 @@
 package com.ricoh.pos.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.database.sqlite.SQLiteDatabase;
 
 import com.ricoh.pos.data.SingleSalesRecord;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
 
 public class SalesRecordManager {
 	
@@ -55,20 +56,46 @@ public class SalesRecordManager {
 	
 	public double getOneDayTotalSales(Date date){
 		ArrayList<SingleSalesRecord> salesRecords = restoreSingleSalesRecordsOfTheDay(date);
-		double totalSales = 0;
+		BigDecimal totalSales = BigDecimal.valueOf(0.0);
 		for (SingleSalesRecord record : salesRecords) {
-			totalSales += record.getTotalSales();
+			totalSales = totalSales.add(BigDecimal.valueOf(record.getTotalSales()));
 		}
-		return totalSales;
+		return totalSales.doubleValue();
 	}
 	
 	public double getOneDayTotalRevenue(Date date){
 		ArrayList<SingleSalesRecord> salesRecords = restoreSingleSalesRecordsOfTheDay(date);
-		double totalRevenue = 0;
+		BigDecimal totalRevenue = BigDecimal.valueOf(0.0);
 		for (SingleSalesRecord record : salesRecords) {
-			totalRevenue += record.getTotalRevenue();
+			totalRevenue = totalRevenue.add(BigDecimal.valueOf(record.getTotalRevenue()));
 		}
-		return totalRevenue;
+		return totalRevenue.doubleValue();
+	}
+
+	/**
+	 * 指定された日付の総値引き額を取得する
+	 * @param date 日付データ
+	 * @return 指定された日付の総値引き額
+	 */
+	public double getOneDayTotalDiscount(Date date) {
+		ArrayList<SingleSalesRecord> salesRecords = restoreSingleSalesRecordsOfTheDay(date);
+		BigDecimal totalDiscount = BigDecimal.valueOf(0.0);
+		for (SingleSalesRecord record : salesRecords) {
+			totalDiscount = totalDiscount.add(BigDecimal.valueOf(record.getDiscountValue()));
+		}
+		return totalDiscount.doubleValue();
+	}
+
+	/**
+	 * 指定された日付の総純利益
+	 * @param date 日付データ
+	 * @return 指定された日付の総利益から総値引き額を除いた額
+	 */
+	public double getOneDayTotalNetProfit(Date date) {
+		BigDecimal oneDayTotalRevenue = BigDecimal.valueOf(getOneDayTotalRevenue(date));
+		BigDecimal oneDayTotalDiscount = BigDecimal.valueOf(getOneDayTotalDiscount(date));
+		return oneDayTotalRevenue.subtract(oneDayTotalDiscount).doubleValue();
+
 	}
 
 }

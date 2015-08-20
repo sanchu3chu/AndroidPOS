@@ -10,6 +10,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
+/**
+ * 商品データそのものを表すクラス
+ * 概ね、ドリシティの用意するCSVと互換
+ */
 public class Product {
 
 	private String code;
@@ -75,7 +79,7 @@ public class Product {
 		if (imagePath == null || imagePath.length() == 0) {
 			throw new IllegalArgumentException("Passing imagePath is not valid");
 		}
-		
+
 		String imageStoragePath = getImageStoragePath();
 		this.imagePath = imageStoragePath + "/" + imagePath + ".jpg";
 	}
@@ -87,7 +91,7 @@ public class Product {
 	public String getCode() {
 		return this.code;
 	}
-	
+
 	public String getCategory() {
 		return this.category;
 	}
@@ -113,11 +117,11 @@ public class Product {
 	}
 
 	@Override
-	public boolean equals(Object object){
+	public boolean equals(Object object) {
 		Product targetProduct = (Product) object;
 		return this.code.equals(targetProduct.getCode());
 	}
-	
+
 	private String getImageStoragePath() {
 		File exterlStorage = Environment.getExternalStorageDirectory();
 		Log.d("debug", "Environment External:" + exterlStorage.getAbsolutePath());
@@ -151,5 +155,19 @@ public class Product {
 		options.inSampleSize = (int) Math.max(scaleW, scaleH);
 		options.inJustDecodeBounds = false;
 		return BitmapFactory.decodeFile(imagePath, options);
+	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("Product{");
+		sb.append("code='").append(code).append("'");
+		sb.append(", category='").append(category).append("'");
+		sb.append(", name='").append(name).append("'");
+		sb.append(", originalCost=").append(originalCost);
+		sb.append(", price=").append(price);
+		sb.append(", stock=").append(stock);
+		sb.append(", imagePath='").append(imagePath).append("'");
+		sb.append("}");
+		return sb.toString();
 	}
 }

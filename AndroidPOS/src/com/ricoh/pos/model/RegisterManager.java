@@ -1,8 +1,5 @@
 package com.ricoh.pos.model;
 
-import java.util.ArrayList;
-import java.util.Date;
-
 import android.util.Log;
 
 import com.ricoh.pos.data.Order;
@@ -10,36 +7,40 @@ import com.ricoh.pos.data.OrderUpdateInfo;
 import com.ricoh.pos.data.Product;
 import com.ricoh.pos.data.SingleSalesRecord;
 
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+
 public class RegisterManager {
-	
+
 	private static RegisterManager instance;
-	
+
 	private ArrayList<Order> orderList;
-	
+
 	private ArrayList<UpdateOrderListener> listeners;
 	private ArrayList<UpdateOrderListListener> orderListListeners;
-	
+
 	private double discountValue;
-	
+
 	private String userAttribute;
-	
-	private RegisterManager(){
+
+	private RegisterManager() {
 		orderList = new ArrayList<Order>();
 		listeners = new ArrayList<UpdateOrderListener>();
 		orderListListeners = new ArrayList<UpdateOrderListListener>();
 	}
-	
-	public static RegisterManager getInstance(){
+
+	public static RegisterManager getInstance() {
 		if (instance == null) {
 			instance = new RegisterManager();
 		}
-		
+
 		return instance;
 	}
-	
-	public void updateOrder(Product product, int num){
+
+	public void updateOrder(Product product, int num) {
 		Order orderOfTheProduct = findOrderOfTheProduct(product);
-		
+
 		if (num == 0) {
 			if (orderOfTheProduct == null) {
 				return;
@@ -47,53 +48,50 @@ public class RegisterManager {
 				orderList.remove(orderOfTheProduct);
 			}
 		} else if (orderOfTheProduct == null) {
-			Order newOrder = new Order(product,num);
+			Order newOrder = new Order(product, num);
 			orderList.add(newOrder);
 		} else {
 			orderOfTheProduct.setNumberOfOrder(num);
 		}
-		
+
 		notifyUpdateOrder();
 	}
-	
-	public void plusNumberOfOrder(Product product){
+
+	public void plusNumberOfOrder(Product product) {
 		Order orderOfTheProduct = findOrderOfTheProduct(product);
-		
+
 		if (orderOfTheProduct == null) {
 			int numberOfFirstOrder = 1;
-			Order newOrder = new Order(product,numberOfFirstOrder);
+			Order newOrder = new Order(product, numberOfFirstOrder);
 			orderList.add(newOrder);
 		} else {
 			orderOfTheProduct.plusNumberOfOrder();
 		}
-		
+
 		notifyUpdateOrder();
 	}
-	
+
 	public void minusNumberOfOrder(Product product) {
 		Order orderOfTheProduct = findOrderOfTheProduct(product);
-		
-		if (orderOfTheProduct == null) {
-			Order newOrder = new Order(product,0);
-			orderList.add(newOrder);
-		}else{
+
+		if (orderOfTheProduct != null) {
 			orderOfTheProduct.minusNumberOfOrder();
-			
+
 			// 注文が0になったら削除
 			if (orderOfTheProduct.getNumberOfOrder() == 0) {
 				orderList.remove(orderOfTheProduct);
 			}
 		}
-		
+
 		notifyUpdateOrder();
 	}
-	
-	private void notifyUpdateOrder(){
-		
+
+	private void notifyUpdateOrder() {
+
 		if (listeners == null || listeners.isEmpty()) {
 			throw new IllegalStateException("UpdateOrderListener is not resgistered");
 		}
-		
+
 		for (UpdateOrderListener listener : listeners) {
 			if (listener == null) {
 				throw new IllegalStateException("UpdateOrderListener to register is null");
@@ -103,8 +101,8 @@ public class RegisterManager {
 					, getTotalAmountAfterDiscount()));
 		}
 	}
-	
-	public void notifyUpdateOrderList(){
+
+	public void notifyUpdateOrderList() {
 		if (orderListListeners == null || orderListListeners.isEmpty()) {
 			throw new IllegalStateException("UpdateOrderListListener is not resgistered");
 		}
@@ -117,33 +115,41 @@ public class RegisterManager {
 		}
 	}
 
-	public double getOriginalTotalAmount(){
-		double totalAmount = 0;
-		for (Order order: orderList) {
-			totalAmount += order.getTotalAmount();
+	public double getOriginalTotalAmount() {
+		BigDecimal totalAmount = BigDecimal.valueOf(0.0);
+		for (Order order : orderList) {
+			totalAmount = totalAmount.add(BigDecimal.valueOf(order.getTotalAmount()));
 		}
-		return totalAmount;
+		return totalAmount.doubleValue();
 	}
-	
-	public double getTotalAmountAfterDiscount(){
+
+	public double getOriginalTotalCost() {
+		BigDecimal totalCost = BigDecimal.valueOf(0.0);
+		for (Order order : orderList) {
+			totalCost = totalCost.add(BigDecimal.valueOf(order.getTotalCost()));
+		}
+		return totalCost.doubleValue();
+	}
+
+	public double getTotalAmountAfterDiscount() {
 		return getOriginalTotalAmount() - discountValue;
 	}
-	
+
 	public int getTotalNumberOfOrder() {
 		int totalNumber = 0;
-		for (Order order: orderList) {
+		for (Order order : orderList) {
 			totalNumber += order.getNumberOfOrder();
 		}
 		return totalNumber;
 	}
-	
-	public void clearAllOrders(){
+
+	public void clearAllOrders() {
 		orderList = new ArrayList<Order>();
 		discountValue = 0;
 		userAttribute = null;
 	}
-	
-	public Order findOrderOfTheProduct(Product product){
+
+	public Order findOrderOfTheProduct(Product product) {
 		for (Order order : orderList) {
 			if ((order.getProductCategory().equals(product.getCategory()) && order.getProductCode().equals(product.getCode()))) {
 				return order;
@@ -152,65 +158,72 @@ public class RegisterManager {
 		// Not Found
 		return null;
 	}
-	
+
 	public int getNumberOfOrder(Product product) {
 		Order order = findOrderOfTheProduct(product);
 		if (order == null) {
 			return 0;
 		} else {
-			return order.getNumberOfOrder();	
+			return order.getNumberOfOrder();
 		}
 	}
-	
-	public void setUpdateOrderListener(UpdateOrderListener listener){
+
+	public void setUpdateOrderListener(UpdateOrderListener listener) {
 		listeners.add(listener);
 	}
-	
-	public void removeUpdateOrderListener(UpdateOrderListener listener){
+
+	public void removeUpdateOrderListener(UpdateOrderListener listener) {
 		listeners.remove(listener);
 	}
-	
-	public void clearUpdateOrderListener(){
+
+	public void clearUpdateOrderListener() {
 		listeners.clear();
 	}
-	
-	public void setUpdateOrderListListener(UpdateOrderListListener listener){orderListListeners.add(listener);}
 
-	public void removeUpdateOrderListListener(UpdateOrderListListener listener){
+	public void setUpdateOrderListListener(UpdateOrderListListener listener) {
+		orderListListeners.add(listener);
+	}
+
+	public void removeUpdateOrderListListener(UpdateOrderListListener listener) {
 		orderListListeners.remove(listener);
 	}
 
-	public void clearUpdateOrderListListener(){
+	public void clearUpdateOrderListListener() {
 		orderListListeners.clear();
 	}
 
 
-	public void updateDiscountValue(double discountValue){
-        double totalAmount = getOriginalTotalAmount();
-        if(totalAmount == 0){
-            this.discountValue = 0;
-        } else if (discountValue >= totalAmount) {
-			throw new IllegalArgumentException("discountValues is larger than totalAmount");
-		} else {
-            this.discountValue = discountValue;
+	public void updateDiscountValue(double discountValue) {
+		this.discountValue = discountValue;
+		BigDecimal totalCost = BigDecimal.valueOf(getOriginalTotalCost());
+		BigDecimal totalAmount = BigDecimal.valueOf(getOriginalTotalAmount());
+		try {
+			if (discountValue >= (totalAmount.subtract(totalCost)).doubleValue()) {
+				throw new IllegalArgumentException("discountValues is larger than totalCost");
+			}
+		} finally {
+			notifyUpdateOrder();
 		}
-		notifyUpdateOrder();
 	}
-	
-	public void setUserAttribute(String attribute){
+
+	public void setUserAttribute(String attribute) {
 		if (attribute == null || attribute.length() == 0) {
 			throw new IllegalArgumentException("User attribute is illegal");
 		}
 		this.userAttribute = attribute;
 		Log.d("Attribute:", " " + userAttribute + " ");
 	}
-	
-	public SingleSalesRecord getSingleSalesRecord(){
+
+	public SingleSalesRecord getSingleSalesRecord() {
 		SingleSalesRecord record = new SingleSalesRecord(new Date());
 		record.setOrders(orderList);
 		record.setDiscountValue(discountValue);
 		record.setUserAttribute(userAttribute);
 		return record;
 	}
-	
+
+	public void clearDiscountValue() {
+		this.discountValue = 0;
+	}
+
 }

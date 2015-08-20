@@ -1,7 +1,6 @@
 package com.ricoh.pos;
 
 import android.app.Activity;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -42,7 +41,7 @@ public class OrderListFragment extends ListFragment implements UpdateOrderListLi
 	public static final String ARG_ITEM_ID = "item_id";
 	// This is the maximum fraction digits for total payment to display.
 	private static final int MAXIMUM_FRACTION_DIGITS = 2;
-	
+
 	private final int IMAGE_VIEW_SIZE = 120;
 
 	private RegisterManager registerManager;
@@ -81,20 +80,17 @@ public class OrderListFragment extends ListFragment implements UpdateOrderListLi
 		setListAdapter(new ListAdapter(getActivity()));
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 	}
-	
-	private void setOrderProductList()
-	{
+
+	private void setOrderProductList() {
 		ArrayList<Product> allProductList = ProductsManager.getInstance().getAllProducts();
-		if (allProductList == null)
-		{
+		if (allProductList == null) {
 			throw new IllegalStateException("No product data");
 		}
-		
+
 		orderProductList = new ArrayList<Product>();
 		for (Product product : allProductList) {
 			Order order = registerManager.findOrderOfTheProduct(product);
-			if (order != null && order.getNumberOfOrder() > 0)
-			{
+			if (order != null && order.getNumberOfOrder() > 0) {
 				orderProductList.add(product);
 			}
 		}
@@ -184,7 +180,7 @@ public class OrderListFragment extends ListFragment implements UpdateOrderListLi
 
 			return convertView;
 		}
-		
+
 
 		private void setImageView(Product product, ImageView imageView) {
 
@@ -204,7 +200,7 @@ public class OrderListFragment extends ListFragment implements UpdateOrderListLi
 	}
 
 	@Override
-	public void onDestroy(){
+	public void onDestroy() {
 		super.onDestroy();
 		registerManager.removeUpdateOrderListListener(this);
 	}

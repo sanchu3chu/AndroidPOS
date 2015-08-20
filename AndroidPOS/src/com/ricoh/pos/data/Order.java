@@ -1,90 +1,108 @@
 package com.ricoh.pos.data;
 
 public class Order {
-	
+
 	private Product product;
-	
 	private int num;
-	
-	public Order() {
-		// Do nothing
-	}
-	
-	public Order(Product product,int numberOfOrder){
-		
-		if(product == null || numberOfOrder < 0) {
+	private double discountValue;
+
+	public Order(Product product, int numberOfOrder) {
+		if (product == null || numberOfOrder < 0) {
 			throw new IllegalArgumentException();
 		}
-		
-		setOrder(product,numberOfOrder);
+		setOrder(product, numberOfOrder);
 	}
-	
-	public void setOrder(Product product,int numberOfOrder){
-		
-		if(product == null || numberOfOrder < 0) {
+
+	public void setOrder(Product product, int numberOfOrder) {
+		if (product == null || numberOfOrder < 0) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		this.product = product;
 		this.num = numberOfOrder;
 	}
-	
-	public void setNumberOfOrder(int num){
+
+	public void setNumberOfOrder(int num) {
 		if (num < 0) {
-			 throw new IllegalArgumentException("Number of order should be positive");
+			throw new IllegalArgumentException("Number of order should be positive");
 		}
-		
+
 		this.num = num;
 	}
-	
-	public void plusNumberOfOrder(){
+
+	public void plusNumberOfOrder() {
 		num++;
 	}
-	
-	public void minusNumberOfOrder(){
+
+	public void minusNumberOfOrder() {
 		if (num == 0) {
-			// Do Nothing		
+
 		} else if (num > 0) {
 			num--;
 		} else {
 			throw new IllegalStateException("number of order is illegal");
 		}
 	}
-	
-	public int getNumberOfOrder(){
+
+	public int getNumberOfOrder() {
 		return num;
 	}
-	
-	public Product getProduct(){
+
+	public Product getProduct() {
 		return product;
 	}
-	
-	public String getProductCode(){
+
+	public String getProductCode() {
 		return product.getCode();
 	}
 
-	public String getProductCategory(){
-		 return product.getCategory();
+	public String getProductCategory() {
+		return product.getCategory();
 	}
-	
-	public String getProductName(){
+
+	public String getProductName() {
 		return product.getName();
 	}
-	
-	public double getProductPrice(){
+
+	public double getProductPrice() {
 		return product.getPrice();
 	}
-	
-	public double getTotalAmount(){
+
+	public double getTotalAmount() {
 		return product.getPrice() * num;
 	}
-	
-	public double getTotalCost(){
+
+	public double getTotalCost() {
 		return product.getOriginalCost() * num;
 	}
-	
-	protected boolean equals(String productName){
+
+	public double getRevenue(boolean enableDisCount) {
+		double result = (product.getPrice() - product.getOriginalCost()) * num;
+		if (enableDisCount) {
+			return (result - discountValue);
+		}
+		return result;
+	}
+
+	public void setDiscount(double discount) {
+		discountValue = discount;
+	}
+
+	public double getDiscount() {
+		return discountValue;
+	}
+
+	protected boolean equals(String productName) {
 		return productName.equals(product.getName());
 	}
-	
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("Order{");
+		sb.append("product=").append(product == null ? "null" : product);
+		sb.append(", num=").append(num);
+		sb.append(", discountValue=").append(discountValue);
+		sb.append("}");
+		return sb.toString();
+	}
 }

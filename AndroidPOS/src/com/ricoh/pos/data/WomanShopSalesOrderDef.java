@@ -12,6 +12,7 @@ public enum WomanShopSalesOrderDef {
     PURCHASE_PRICE("purchase_price"),   // 仕入れ価格(CSVではunit_selling_price)
     UNIT_PRICE("unit_price"),           // 商品単価(CSVではMRP)
     QTY("sales_count"),                  // 販売できた数量
+    DISCOUNT("discount"),               // このOrderに設定された値引き額
     SINGLE_SALES_ID("single_sales_id");// 親にあたる販売情報のID
 
     private String name;

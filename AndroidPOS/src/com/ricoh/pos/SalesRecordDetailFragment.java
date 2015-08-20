@@ -32,7 +32,7 @@ public class SalesRecordDetailFragment extends ListFragment {
 	private static final int MAXIMUM_FRACTION_DIGITS = 2;
 	private final int IMAGE_VIEW_SIZE = 120;
 	private ArrayList<Order> orders = new ArrayList<Order>();
-	
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -46,9 +46,9 @@ public class SalesRecordDetailFragment extends ListFragment {
 			salesRecord = SalesRecordManager.getInstance().getSingleSalesRecord(date);
 		}
 
-        if (salesRecord != null) {
-            orders = salesRecord.getAllOrders(); // 検索結果があるならordersを差し替え
-        }
+		if (salesRecord != null) {
+			orders = salesRecord.getAllOrders(); // 検索結果があるならordersを差し替え
+		}
 
 		setListAdapter(new ListAdapter(getActivity()));
 		getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
@@ -81,7 +81,7 @@ public class SalesRecordDetailFragment extends ListFragment {
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.order_row, null);
 			}
-			
+
 			Order order = orders.get(position);
 			final Product product = order.getProduct();
 
@@ -114,7 +114,6 @@ public class SalesRecordDetailFragment extends ListFragment {
 				}
 			});
 
-
 			TextView priceView = (TextView) convertView.findViewById(R.id.price);
 			priceView.setPadding(10, 0, 0, 0);
 			NumberFormat.getInstance().setMaximumFractionDigits(MAXIMUM_FRACTION_DIGITS);
@@ -132,11 +131,9 @@ public class SalesRecordDetailFragment extends ListFragment {
 
 			return convertView;
 		}
-		
-		private void setImageView(Product product, ImageView imageView) {
 
+		private void setImageView(Product product, ImageView imageView) {
 			try {
-				 
 				Bitmap image = product.decodeProductImage(IMAGE_VIEW_SIZE, IMAGE_VIEW_SIZE);
 				imageView.setImageBitmap(image);
 				imageView.setVisibility(View.VISIBLE);
@@ -149,7 +146,7 @@ public class SalesRecordDetailFragment extends ListFragment {
 				//imageView.setImageBitmap(null);
 			}
 		}
-		
+
 	}
 
 }

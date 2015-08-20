@@ -11,20 +11,20 @@
         android:id="@+id/textOneDaySales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+string/title_oneday_total_sales"
+        android:text="@string/title_oneday_total_sales"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/FontLarge"
          />
     
     <TextView
         android:id="@+id/oneDaySales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+string/title_total_payment"
+        android:text="@string/title_total_payment"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/FontLarge"
         android:layout_marginBottom="20sp"
          />
 
@@ -32,10 +32,10 @@
         android:id="@+id/textOneDayRevenue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@+string/title_oneday_total_revenue"
+        android:text="@string/title_oneday_total_revenue"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/FontLarge"
          />
     
     <TextView
@@ -44,7 +44,47 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:layout_gravity="center"
-        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textAppearance="@style/FontLarge"
+        android:layout_marginBottom="20sp" />
+
+    <TextView
+        android:id="@+id/textOneDayDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_oneday_total_discount"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textAppearance="@style/FontLarge"
+        />
+
+    <TextView
+        android:id="@+id/oneDayDiscount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textAppearance="@style/FontLarge"
         android:layout_marginBottom="50sp" />
+
+    <TextView
+        android:id="@+id/textOneDayNetProfit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_oneday_total_net_profit"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textAppearance="@style/FontLarge"
+        />
+
+    <TextView
+        android:id="@+id/oneDayNetProfit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:textAppearance="@style/FontLarge"
+        android:layout_marginBottom="50sp" />
+    
+    
 
 </LinearLayout>
