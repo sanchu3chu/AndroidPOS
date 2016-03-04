@@ -8,6 +8,8 @@ import android.util.Log;
 
 import com.ricoh.pos.data.Product;
 import com.ricoh.pos.data.WomanShopDataDef;
+import com.ricoh.pos.DatabaseHelper;
+import com.ricoh.pos.data.WomanShopFormatter;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
@@ -17,6 +19,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -24,8 +27,8 @@ import java.util.List;
 public class WomanShopIOManager implements IOManager {
 
 	private SQLiteDatabase database;
-	private static String DATABASE_NAME = "products_dummy";
 	private static String csvStorageFolder = "/Ricoh";
+	private static final String defaultStock="0";
 
 	private final String[] WomanShopDataStructure = new String[]{
 			WomanShopDataDef.PRODUCT_CODE.name(),
@@ -45,7 +48,7 @@ public class WomanShopIOManager implements IOManager {
 
 		try {
 			cursor = database.query(
-					DATABASE_NAME,
+					DatabaseHelper.PRODUCT_DB,
 					WomanShopDataStructure,
 					null, null, null, null, null);
 			Log.d("debug", "count:" + cursor.getCount());
@@ -63,47 +66,73 @@ public class WomanShopIOManager implements IOManager {
 		}
 	}
 
+	public void updateStock(String productCode, String productStock) {
+		ContentValues values = new ContentValues();
+		values.put(WomanShopDataDef.STOCK.name(), productStock);
+		String[] arg = {productCode};
+		database.update(DatabaseHelper.PRODUCT_DB, values, WomanShopDataDef.PRODUCT_CODE.name() + "=?", arg);
+	}
+
 	public void importCSV() throws IOException {
 		File original = getArrivedGoods();
 		File backup = backupArrivedGoods(original);
 
 		BufferedReader reader = null;
+		boolean isDataFail = false;
+
 		try {
-			reader = new BufferedReader(new FileReader(backup));
+            reader = new BufferedReader(new FileReader(backup));
 
-			// skipping header
-			String header = reader.readLine();
-			// import に失敗した行だけをもとの CSV ファイルに残す。そのために一度中身をヘッダだけにしてある
-			FileUtils.write(original, header + "\n", DEFAULT_CHARSET, false);
+            // skipping header
+            String header = reader.readLine();
+            // import に失敗した行だけをもとの CSV ファイルに残す。そのために一度中身をヘッダだけにしてある
+            FileUtils.write(original, header + "\n", DEFAULT_CHARSET, false);
+            // adding arrived goods to DB
+            String line;
 
-			// adding arrived goods to DB
-			String line;
-			while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
 
-				String[] split = line.split(",");
-				String code = split[WomanShopDataDef.PRODUCT_CODE.ordinal()];
-				String name = split[WomanShopDataDef.ITEM_CATEGORY.ordinal()];
-				String category = split[WomanShopDataDef.PRODUCT_CATEGORY.ordinal()];
-				double originalCost = Double.valueOf(split[WomanShopDataDef.COST_TO_ENTREPRENEUR.ordinal()]);
-				double price = Double.valueOf(split[WomanShopDataDef.SALE_PRICE.ordinal()]);
-				int stock = Integer.valueOf(split[WomanShopDataDef.STOCK.ordinal()]);
+                String[] split = line.split(",");
+                if (split.length != 5 && split.length != 6) {
+                    Log.e("error", "This line is NOT adequate format");
+                    FileUtils.write(original, line + "\n", DEFAULT_CHARSET, true);
+                    isDataFail = true;
+                    continue;
+                }
 
-				Product product = new Product(code, name, category, originalCost, price, stock);
+                String code = split[WomanShopDataDef.PRODUCT_CODE.ordinal()];
+                String name = split[WomanShopDataDef.ITEM_CATEGORY.ordinal()];
+                String category = split[WomanShopDataDef.PRODUCT_CATEGORY.ordinal()];
 
-				try {
-					stock(product);
+                try {
+                    // CSVはルピー単位の表記なので、パイサ単位の整数に変換
+					long originalCost = WomanShopFormatter.convertRupeeToPaisa(split[WomanShopDataDef.COST_TO_ENTREPRENEUR.ordinal()]);
+					long price = WomanShopFormatter.convertRupeeToPaisa(split[WomanShopDataDef.SALE_PRICE.ordinal()]);
 
-				} catch (IllegalArgumentException e) {
-					Log.e("error", "conflicted with a record in DB.", e);
-					FileUtils.write(original, line + "\n", DEFAULT_CHARSET, true);
-				}
-			}
+                    // stockのカラムがない場合は0で設定
+                    String stockStr = split.length == 6 ? split[WomanShopDataDef.STOCK.ordinal()] : defaultStock;
+                    int stock = Integer.valueOf(stockStr);
+                    Product product = new Product(code, name, category, originalCost, price, stock);
 
+                    stock(product);
+                } catch (NumberFormatException e) {
+                    Log.e("error", "failed to convert into double or int.", e);
+                    FileUtils.write(original, line + "\n", DEFAULT_CHARSET, true);
+                    isDataFail = true;
+                } catch (IllegalArgumentException e) {
+                    Log.e("error", "conflicted with a record in DB.", e);
+                    FileUtils.write(original, line + "\n", DEFAULT_CHARSET, true);
+                    isDataFail = true;
+                }
+            }
+
+            if (isDataFail) {
+                throw new IllegalArgumentException();
+            }
 		} finally {
 			IOUtils.closeQuietly(reader);
 		}
-
-	}
+    }
 
 	public Product searchById(String productId) {
 		Cursor cursor = null;
@@ -111,7 +140,7 @@ public class WomanShopIOManager implements IOManager {
 		try {
 			String[] args = {productId};
 			cursor = database.query(
-					DATABASE_NAME,
+					DatabaseHelper.PRODUCT_DB,
 					WomanShopDataStructure,
 					WomanShopDataDef.PRODUCT_CODE.name() + "=?",
 					args,
@@ -152,7 +181,7 @@ public class WomanShopIOManager implements IOManager {
 			contentValue.put(WomanShopDataDef.SALE_PRICE.name(), arrivedProduct.getPrice());
 			contentValue.put(WomanShopDataDef.STOCK.name(), arrivedProduct.getStock());
 
-			database.insertWithOnConflict(DATABASE_NAME, null, contentValue,
+			database.insertWithOnConflict(DatabaseHelper.PRODUCT_DB, null, contentValue,
 					SQLiteDatabase.CONFLICT_REPLACE);
 
 		} else {
@@ -162,7 +191,7 @@ public class WomanShopIOManager implements IOManager {
 				ContentValues contentValue = new ContentValues();
 				contentValue.put(WomanShopDataDef.STOCK.name(), productInDb.getStock() + arrivedProduct.getStock());
 				String[] args = {arrivedProduct.getCode()};
-				database.update(DATABASE_NAME, contentValue, WomanShopDataDef.PRODUCT_CODE.name() + "=?", args);
+				database.update(DatabaseHelper.PRODUCT_DB, contentValue, WomanShopDataDef.PRODUCT_CODE.name() + "=?", args);
 
 			} else {
 				throw new IllegalArgumentException("Conflicted Product. DB:" + productInDb + ", Arrived Product:" + arrivedProduct);
@@ -204,7 +233,7 @@ public class WomanShopIOManager implements IOManager {
 	// TODO: Add this function to interface
 	public void setDatabase(SQLiteDatabase database) {
 		if (this.database == null) {
-			Log.d("debug", "Database set:" + DATABASE_NAME);
+			Log.d("debug", "Database set:" + DatabaseHelper.PRODUCT_DB);
 			this.database = database;
 		}
 	}
@@ -212,7 +241,7 @@ public class WomanShopIOManager implements IOManager {
 	// TODO: Add this function to interface
 	public void closeDatabase() {
 		if (database != null) {
-			Log.d("debug", "Database closed:" + DATABASE_NAME);
+			Log.d("debug", "Database closed:" + DatabaseHelper.PRODUCT_DB);
 			database.close();
 		}
 	}
@@ -228,13 +257,21 @@ public class WomanShopIOManager implements IOManager {
 		String productCode = cursor.getString(indexProductCode);
 		String productCategory = cursor.getString(indexProductCategory);
 		String itemName = cursor.getString(indexItemName);
-		double salePrice = cursor.getDouble(indexSalePrice);
-		double costToEntrepreneur = cursor.getDouble(indexCostToEntrepreneur);
+		long salePrice = cursor.getLong(indexSalePrice);
+		long costToEntrepreneur = cursor.getLong(indexCostToEntrepreneur);
 		int stock = cursor.getInt(indexStock);
 
 		return new Product(productCode, itemName, productCategory, costToEntrepreneur, salePrice, stock);
 	}
 
+	public void updateStock(Product product, int decrement) {
+		Product productInDb = searchById(product.getCode());
+		int stock = productInDb.getStock() - decrement;
+		ContentValues contentValue = new ContentValues();
+		contentValue.put(WomanShopDataDef.STOCK.name(), stock > 0 ? stock : 0);
+		String[] args = {productInDb.getCode()};
+		database.update(DatabaseHelper.PRODUCT_DB, contentValue, WomanShopDataDef.PRODUCT_CODE.name() + "=?", args);
+	}
 
 	public String getCSVStoragePath() {
 		File exterlStorage = Environment.getExternalStorageDirectory();

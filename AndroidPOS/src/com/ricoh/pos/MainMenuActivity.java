@@ -41,7 +41,18 @@ public class MainMenuActivity extends Activity implements DataSyncTaskCallback {
 				startActivity(intent);
 			}
 		});
-		setRegisterButtonEnabled();
+
+		findViewById(R.id.EditButton).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent().setClass(
+						MainMenuActivity.this,
+						EditActivity.class);
+				startActivity(intent);
+			}
+		});
+
+		setRegisterButtonAndEditButtonEnabled();
 
 		findViewById(R.id.SalesButton).setOnClickListener(new OnClickListener() {
 			@Override
@@ -97,20 +108,22 @@ public class MainMenuActivity extends Activity implements DataSyncTaskCallback {
 	@Override
 	public void onSuccessSyncData() {
 		Toast.makeText(this, R.string.sync_success, Toast.LENGTH_LONG).show();
-		setRegisterButtonEnabled();
+		setRegisterButtonAndEditButtonEnabled();
 	}
 
 	@Override
 	public void onFailedSyncData(int resId) {
 		Toast.makeText(this, resId, Toast.LENGTH_LONG).show();
-		setRegisterButtonEnabled();
+		setRegisterButtonAndEditButtonEnabled();
 	}
 
-	private void setRegisterButtonEnabled() {
+	private void setRegisterButtonAndEditButtonEnabled() {
 		if (ProductsManager.getInstance().getCategoryCount() > 0) {
 			findViewById(R.id.RegisterButton).setEnabled(true);
+			findViewById(R.id.EditButton).setEnabled(true);
 		} else {
 			findViewById(R.id.RegisterButton).setEnabled(false);
+			findViewById(R.id.EditButton).setEnabled(false);
 		}
 	}
 }

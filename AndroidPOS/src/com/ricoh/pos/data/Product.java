@@ -19,21 +19,19 @@ public class Product {
 	private String code;
 	private String category;
 	private String name;
-	private double originalCost;
-	private double price;
+	private long originalCost;	// 原価。単位はパイサ。ルピー表示する場合は100で割ること
+	private long price;			// 販売価格。単位はパイサ。ルピー表示する場合は100で割ること
 	private int stock;
 	private String imagePath;
 	private static String imageStorageFolder = "/Ricoh";
 
-	public Product(String code, String name, String category, double originalCost, double price) {
-		this(code, category, name, originalCost, price, 0);
+	public Product(String code, String name, String category, long originalCost, long price) {
+		this(code, name, category, originalCost, price, 0);
 	}
 
-	public Product(String code, String name, String category, double originalCost, double price, int stock) {
-
-
+	public Product(String code, String name, String category, long originalCost, long price, int stock) {
 		if (code == null || code.isEmpty() || category == null || category.isEmpty() ||
-				name == null || name.isEmpty() || originalCost <= 0 || price <= 0 || stock < 0) {
+			name == null || name.isEmpty() || originalCost <= 0 || price <= 0 || stock < 0) {
 			throw new IllegalArgumentException("invalid params:code=" + code + "name=" + name + "category=" +
 					category + "originalCost=" + originalCost + "price=" + price + "stock=" + stock);
 		}
@@ -50,7 +48,7 @@ public class Product {
 	// /////////////////////////
 	// Setter
 	// /////////////////////////
-	public void setOriginalCost(double cost) {
+	public void setOriginalCost(long cost) {
 
 		if (cost < 0) {
 			throw new IllegalArgumentException("Original cost should be over zero");
@@ -59,7 +57,7 @@ public class Product {
 		this.originalCost = cost;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(long price) {
 
 		if (price < 0) {
 			throw new IllegalArgumentException("Price should be over zero");
@@ -77,9 +75,9 @@ public class Product {
 		this.stock = stock;
 	}
 
-	public String setProductImagePath(String fileName) {
+	public String setProductImagePath(String imagePath) {
 
-		if (fileName == null || fileName.length() == 0) {
+		if (imagePath == null || imagePath.isEmpty()) {
 			throw new IllegalArgumentException("Passing imagePath is not valid");
 		}
 
@@ -103,11 +101,11 @@ public class Product {
 		return this.name;
 	}
 
-	public double getOriginalCost() {
+	public long getOriginalCost() {
 		return this.originalCost;
 	}
 
-	public double getPrice() {
+	public long getPrice() {
 		return this.price;
 	}
 
@@ -125,8 +123,8 @@ public class Product {
 		boolean sameCode = this.code.equals(targetProduct.getCode());
 		boolean sameCategory = this.category.equals(targetProduct.getCategory());
 		boolean sameName = this.name.equals(targetProduct.getName());
-		boolean sameOriginalCost = Double.compare(this.originalCost, targetProduct.getOriginalCost()) == 0;
-		boolean samePrice = Double.compare(this.price, targetProduct.getPrice()) == 0;
+		boolean sameOriginalCost = (this.originalCost == targetProduct.getOriginalCost());
+		boolean samePrice = (this.price == targetProduct.getPrice());
 
 		return sameCode && sameCategory && sameName && sameOriginalCost && samePrice;
 	}
@@ -172,8 +170,8 @@ public class Product {
 		sb.append("code='").append(code).append("'");
 		sb.append(", category='").append(category).append("'");
 		sb.append(", name='").append(name).append("'");
-		sb.append(", originalCost=").append(originalCost);
-		sb.append(", price=").append(price);
+		sb.append(", originalCost=").append(WomanShopFormatter.convertPaisaToRupee(originalCost));
+		sb.append(", price=").append(WomanShopFormatter.convertPaisaToRupee(price));
 		sb.append(", stock=").append(stock);
 		sb.append(", imagePath='").append(imagePath).append("'");
 		sb.append("}");

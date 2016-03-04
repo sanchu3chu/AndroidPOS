@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import com.ricoh.pos.data.Product;
 import com.ricoh.pos.model.ProductsManager;
 import com.ricoh.pos.model.WomanShopIOManager;
@@ -49,6 +48,7 @@ public class DataSyncTask extends AsyncTask<String, Void, AsyncTaskResult<String
 		Log.d("debug", "SyncButton click");
 		boolean isImportFail = false;
 		boolean isExportFail = false;
+		boolean isDataFail = false;
 
 		// CSV から入荷商品を読み込んで DB に登録。
 		try {
@@ -56,6 +56,9 @@ public class DataSyncTask extends AsyncTask<String, Void, AsyncTaskResult<String
 		} catch (IOException e) {
 			Log.d("debug", "import error", e);
 			isImportFail = true;
+		}catch (IllegalArgumentException e) {
+			Log.d("debug", "import error partially", e);
+			isDataFail = true;
 		}
 
 		// 販売履歴DBの内容をexportする
@@ -80,6 +83,9 @@ public class DataSyncTask extends AsyncTask<String, Void, AsyncTaskResult<String
 		}
 		if (isImportFail) {
 			return AsyncTaskResult.createErrorResult(R.string.sd_import_error);
+		}
+		if (isDataFail) {
+			return AsyncTaskResult.createErrorResult(R.string.data_error);
 		}
 		// The argument is null because nothing to notify on success
 		return AsyncTaskResult.createNormalResult(null);

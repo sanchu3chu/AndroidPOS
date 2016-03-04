@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content"
+              android:layout_height="50dp"
               android:orientation="horizontal">
 
     <ImageView
@@ -33,7 +33,7 @@
                 android:id="@+id/price"
                 style="@style/FontMiddle"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:layout_weight="1"/>
 
@@ -41,7 +41,7 @@
                 android:id="@+id/stock"
                 style="@style/FontMiddle"
                 android:layout_width="wrap_content"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:layout_weight="1"/>
         </LinearLayout>
@@ -50,9 +50,10 @@
     <com.ricoh.pos.ProductEditText
         android:id="@+id/numberOfSales"
         android:layout_width="65dp"
-        android:layout_height="80sp"
+        android:layout_height="wrap_content"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"/>
+        android:scaleType="fitCenter"
+        android:layout_gravity="center_vertical"/>
 
     <com.ricoh.pos.ProductButton
         android:id="@+id/plusButton"
@@ -62,7 +63,7 @@
         android:adjustViewBounds="true"
         android:background="@drawable/icn_numplus"
         android:scaleType="fitCenter"
-        />
+        android:layout_gravity="center_vertical"/>
 
     <com.ricoh.pos.ProductButton
         android:id="@+id/minusButton"
@@ -72,6 +73,6 @@
         android:adjustViewBounds="true"
         android:background="@drawable/icn_numminus"
         android:scaleType="fitCenter"
-        />
+        android:layout_gravity="center_vertical"/>
 
 </LinearLayout>
