@@ -15,14 +15,14 @@
     <string name="price_label">Price</string>
     <string name="original_cost_label">Cost</string>
     <string name="currency_india">Rp</string>
-    <string name="number_tag">X</string>
+    <string name="number_tag">×</string>
     <string name="discount_error">Discount must be less than the profit.</string>
     <string name="discount">Discount</string>
     <string name="zero_order_error">Input number of products</string>
-    <string name="title_oneday_total_sales">Total Sales</string>
-    <string name="title_oneday_total_revenue">Total Revenue</string>
-    <string name="title_oneday_total_discount">Total Discount</string>
-    <string name="title_oneday_total_net_profit">Total Net Profit</string>
+    <string name="title_oneday_total_sales">Sales</string>
+    <string name="title_oneday_total_revenue">Revenue</string>
+    <string name="title_oneday_total_discount">Discount</string>
+    <string name="title_oneday_total_profit">Profit</string>
     <string name="title_delete">Delete sales record</string>
     <string name="undiscounted_price">Total price before discount</string>
     <string name="success_deleted_message">Succeeded to delete sales record</string>
@@ -80,4 +80,23 @@
     <string name="edit_column_name_stock">Stock</string>
     <string name="ok_edit">Edit Stock</string>
     <string name="cancel_edit">Cancel</string>
+    <string name="graph_color">#00BFA5</string>
+    <string name="MMM_yyyy">MMM yyyy</string>
+    <string name="d_MMM">d MMM</string>
+    <string name="d">d</string>
+    <string name="E">E</string>
+    <string name="yyyy">yyyy</string>
+    <string name="HH_mm">HH:mm</string>
+    <string name="android_pos_font_thin">sans-serif-thin</string>
+    <string name="android_pos_font_light">sans-serif-light</string>
+    <string name="hyphen">-</string>
+    <!--訳すもの-->
+    <string name="no_data">Nothing...</string>
+    <string name="price_sales">Price : </string>
+    <string name="time">Time</string>
+    <string name="purchased_at">Purchased goods list / </string>
+    <string name="weekly_data">Weekly Data</string>
+    <string name="prev">＜ Prev</string>
+    <string name="next">Next ＞</string>
+    <!--ここまで-->
 </resources>

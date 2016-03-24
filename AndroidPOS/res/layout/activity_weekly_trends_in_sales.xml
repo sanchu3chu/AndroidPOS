@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:baselineAligned="false"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/previous_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/one_sale_margin_10dp"
+            android:fontFamily="@string/android_pos_font_thin"
+            android:gravity="bottom|center"
+            android:text="@string/prev"
+            android:textSize="@dimen/one_day_sales_text_size4"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical|center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/startDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="@dimen/little_margin"
+                android:fontFamily="@string/android_pos_font_light"
+                android:gravity="center"
+                android:textColor="@color/AndroidPosGreen"
+                android:textSize="@dimen/one_day_sales_text_size3"/>
+
+            <TextView
+                android:id="@+id/startMonthAndYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:gravity="center"
+                android:textSize="@dimen/one_day_sales_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:gravity="center"
+                android:text="@string/hyphen"
+                android:textSize="@dimen/one_day_sales_text_size"/>
+
+            <TextView
+                android:id="@+id/endDay"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginRight="@dimen/little_margin"
+                android:fontFamily="@string/android_pos_font_light"
+                android:gravity="center"
+                android:textColor="@color/AndroidPosGreen"
+                android:textSize="@dimen/one_day_sales_text_size3"/>
+
+            <TextView
+                android:id="@+id/endMonthAndYear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:gravity="center"
+                android:textSize="@dimen/one_day_sales_text_size"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/next_week"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginRight="@dimen/one_sale_margin_10dp"
+            android:fontFamily="@string/android_pos_font_thin"
+            android:gravity="center"
+            android:text="@string/next"
+            android:textSize="@dimen/one_day_sales_text_size4"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="2"
+                      android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <com.db.chart.view.LineChartView
+                    android:id="@+id/linechart"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="@dimen/activity_horizontal_margin"
+                    android:layout_weight="5"
+                    android:padding="@dimen/one_sale_margin_10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                      android:layout_width="0dp"
+                      android:layout_height="match_parent"
+                      android:layout_weight="1"
+                      android:orientation="vertical">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                          android:layout_width="match_parent"
+                          android:layout_height="match_parent"
+                          android:layout_marginLeft="@dimen/one_sale_margin_20dp"
+                          android:layout_marginRight="@dimen/one_sale_margin_20dp"
+                          android:layout_marginTop="@dimen/activity_horizontal_margin"
+                          android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:dividerPadding="3dp"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@string/android_pos_font_thin"
+                        android:text="@string/weekly_data"
+                        android:textSize="@dimen/one_day_sales_text_size2"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/divider_height"
+                        android:background="@color/gray"/>
+
+                </LinearLayout>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/one_sale_margin_10dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@string/android_pos_font_thin"
+                            android:text="@string/title_oneday_total_sales"
+                            android:textAlignment="center"/>
+
+                        <TextView
+                            android:id="@+id/weekly_sales"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="3"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:fontFamily="@string/android_pos_font_light"
+                            android:gravity="right"
+                            android:textColor="@color/AndroidPosGreen"
+                            android:textSize="@dimen/one_day_sales_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="4"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@string/android_pos_font_thin"
+                            android:text="@string/currency_india"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/one_sale_margin_10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@string/android_pos_font_thin"
+                            android:text="@string/title_oneday_total_discount"
+                            android:textAlignment="center"/>
+
+                        <TextView
+                            android:id="@+id/weekly_discount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="3"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:fontFamily="@string/android_pos_font_light"
+                            android:gravity="right"
+                            android:textColor="@color/AndroidPosGreen"
+                            android:textSize="@dimen/one_day_sales_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="4"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@string/android_pos_font_thin"
+                            android:text="@string/currency_india"/>
+
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="@dimen/one_sale_margin_10dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_column="2"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@string/android_pos_font_thin"
+                            android:text="@string/title_oneday_total_profit"
+                            android:textAlignment="center"/>
+
+                        <TextView
+                            android:id="@+id/weekly_profit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="3"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:fontFamily="@string/android_pos_font_light"
+                            android:gravity="right"
+                            android:textColor="@color/AndroidPosGreen"
+                            android:textSize="@dimen/one_day_sales_text_size"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_column="4"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@string/android_pos_font_thin"
+                            android:text="@string/currency_india"/>
+
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

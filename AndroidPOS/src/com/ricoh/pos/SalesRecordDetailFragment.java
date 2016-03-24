@@ -25,8 +25,10 @@ import com.ricoh.pos.model.SalesRecordManager;
 
 import java.io.FileNotFoundException;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class SalesRecordDetailFragment extends ListFragment {
 	// This is the maximum fraction digits for total payment to display.
@@ -80,8 +82,9 @@ public class SalesRecordDetailFragment extends ListFragment {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.order_row, null);
+				convertView = inflater.inflate(R.layout.order_row_oneday_sales, null);
 			}
+
 
 			Order order = orders.get(position);
 			final Product product = order.getProduct();
@@ -92,7 +95,6 @@ public class SalesRecordDetailFragment extends ListFragment {
 			setImageView(product, imageView);
 
 			TextView textView = (TextView) convertView.findViewById(R.id.filename);
-			textView.setPadding(10, 0, 0, 0);
 			String productName = product.getName();
 			if (productName == null || productName.length() == 0) {
 				throw new NullPointerException("Product name is not valid");
@@ -116,13 +118,11 @@ public class SalesRecordDetailFragment extends ListFragment {
 			});
 
 			TextView priceView = (TextView) convertView.findViewById(R.id.price);
-			priceView.setPadding(10, 0, 0, 0);
 			NumberFormat.getInstance().setMaximumFractionDigits(MAXIMUM_FRACTION_DIGITS);
-			priceView.setText(NumberFormat.getInstance().format(
-					WomanShopFormatter.convertPaisaToRupee(product.getPrice())));
+			priceView.setText(getString(R.string.price_sales)+NumberFormat.getInstance().format(
+					WomanShopFormatter.convertPaisaToRupee(product.getPrice()))+ getResources().getString(R.string.currency_india));
 
 			TextView numberOfSalseView = (TextView) convertView.findViewById(R.id.numberOfSales);
-			numberOfSalseView.setPadding(10, 0, 0, 0);
 
 			if (order == null || order.getNumberOfOrder() == 0) {
 				throw new AssertionError("Product which isn't ordered is shown");

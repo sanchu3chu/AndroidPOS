@@ -3,18 +3,24 @@ package com.ricoh.pos;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ricoh.pos.data.SingleSalesRecord;
 import com.ricoh.pos.model.SalesCalenderManager;
 import com.ricoh.pos.model.SalesRecordManager;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 public class SalesRecordListFragment extends ListFragment {
 
@@ -49,7 +55,6 @@ public class SalesRecordListFragment extends ListFragment {
 		 * Callback for when an item has been selected.
 		 */
 		public void onItemSelected(String id);
-
 		public void onItemLongSelected(Date id);
 	}
 
@@ -60,12 +65,10 @@ public class SalesRecordListFragment extends ListFragment {
 	private static Callbacks sDummyCallbacks = new Callbacks() {
 		@Override
 		public void onItemSelected(String id) {
-
 		}
 
 		@Override
 		public void onItemLongSelected(Date id) {
-
 		}
 	};
 
@@ -89,9 +92,10 @@ public class SalesRecordListFragment extends ListFragment {
 
 		setListAdapter(new ArrayAdapter<String>(
 				getActivity(),
-				android.R.layout.simple_list_item_activated_1,
+				R.layout.row_sales_time,
 				android.R.id.text1,
 				getSalesRecordListTitles()));
+
 	}
 
 	@Override
@@ -110,15 +114,18 @@ public class SalesRecordListFragment extends ListFragment {
 		});
 	}
 
-	private ArrayList<String> getSalesRecordListTitles() {
-		//ArrayList<SingleSalesRecord> records =  SalesRecordManager.getInstance().restoreSingleSalesRecordsOfTheDay(date);
-		ArrayList<String> titles = new ArrayList<String>();
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+		View view = inflater.inflate(R.layout.list_content_sales_time, container, false);
+		return view;
+	}
 
-		// TODO: Fix Me
-		//titles.add("ALL");
+	private ArrayList<String> getSalesRecordListTitles() {
+		ArrayList<String> titles = new ArrayList<String>();
+		SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.HH_mm));
 
 		for (SingleSalesRecord record : this.oneDaySalesRecords) {
-			titles.add(record.getSalesDate().toString());
+			titles.add(sdf.format(record.getSalesDate()).toString());
 		}
 
 		return titles;
@@ -171,8 +178,18 @@ public class SalesRecordListFragment extends ListFragment {
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
 
+//		Date date = SalesCalenderManager.getInstance().getSelectedSalesDate();
+
+
 		Date clickedDate = this.oneDaySalesRecords.get(position).getSalesDate();
 		SalesCalenderManager.getInstance().setSelectedSalesDate(clickedDate);
+
+		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm", Locale.US);
+		TextView time = (TextView) getActivity().findViewById(R.id.time);
+		time.setText(sdf.format(clickedDate));
+
+
+		view.setSelected(true);
 
 		mCallbacks.onItemSelected(clickedDate.toString());
 	}

@@ -9,4 +9,14 @@
     <dimen name="edit_dialog_btn_size">40dp</dimen>
     <dimen name="edit_dialog_plus_btn_margin">30dp</dimen>
     <dimen name="edit_dialog_minus_btn_margin">20dp</dimen>
+    <dimen name="one_sale_margin_10dp">10dp</dimen>
+    <dimen name="one_sale_margin_20dp">20dp</dimen>
+    <dimen name="photo_size">100dp</dimen>
+    <dimen name="one_sale_text_size">15dp</dimen>
+    <dimen name="one_day_sales_text_size">36dp</dimen>
+    <dimen name="one_day_sales_text_size2">28dp</dimen>
+    <dimen name="one_day_sales_text_size3">50dp</dimen>
+    <dimen name="one_day_sales_text_size4">24dp</dimen>
+    <dimen name="divider_height">1px</dimen>
+    <dimen name="little_margin">5dp</dimen>
 </resources>

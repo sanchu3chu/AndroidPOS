@@ -1,90 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/total_payment_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center_vertical"
-    android:background="#FFFFFF" >
+<LinearLayout android:id="@+id/total_payment_container"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center_vertical"
+              android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textOneDaySales"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_oneday_total_sales"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-         />
-    
-    <TextView
-        android:id="@+id/oneDaySales"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_total_payment"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-        android:layout_marginBottom="20sp"
-         />
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textOneDayRevenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_oneday_total_revenue"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-         />
-    
-    <TextView
-        android:id="@+id/oneDayRevenue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-        android:layout_marginBottom="20sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/one_sale_margin_10dp">
 
-    <TextView
-        android:id="@+id/textOneDayDiscount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_oneday_total_discount"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/title_oneday_total_sales"/>
 
-    <TextView
-        android:id="@+id/oneDayDiscount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-        android:layout_marginBottom="50sp" />
+            <TextView
+                android:id="@+id/oneDaySales"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@string/android_pos_font_light"
+                android:gravity="right"
+                android:textColor="@color/AndroidPosGreen"
+                android:textSize="@dimen/one_day_sales_text_size"/>
 
-    <TextView
-        android:id="@+id/textOneDayNetProfit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/title_oneday_total_net_profit"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-        />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/currency_india"/>
+        </TableRow>
 
-    <TextView
-        android:id="@+id/oneDayNetProfit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_gravity="center"
-        android:textAppearance="@style/FontLarge"
-        android:layout_marginBottom="50sp" />
-    
-    
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/one_sale_margin_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/title_oneday_total_discount"/>
+
+            <TextView
+                android:id="@+id/oneDayDiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@string/android_pos_font_light"
+                android:gravity="right"
+                android:textColor="@color/AndroidPosGreen"
+                android:textSize="@dimen/one_day_sales_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/currency_india"/>
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/one_sale_margin_10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/title_oneday_total_profit"/>
+
+            <TextView
+                android:id="@+id/oneDayNetProfit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@string/android_pos_font_light"
+                android:gravity="right"
+                android:textColor="@color/AndroidPosGreen"
+                android:textSize="@dimen/one_day_sales_text_size"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/currency_india"/>
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>

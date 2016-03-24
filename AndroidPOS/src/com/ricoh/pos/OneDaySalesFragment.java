@@ -25,9 +25,6 @@ public class OneDaySalesFragment extends Fragment {
 		TextView oneDaySalesView = (TextView) v.findViewById(R.id.oneDaySales);
 		long oneDaySalesPaisa = SalesRecordManager.getInstance().getOneDayTotalSales(date);
 
-		TextView oneDayRevenueView = (TextView) v.findViewById(R.id.oneDayRevenue);
-		long oneDayRevenuePaisa = SalesRecordManager.getInstance().getOneDayTotalRevenue(date);
-		
 		TextView oneDayDiscountView = (TextView) v.findViewById(R.id.oneDayDiscount);
 		long oneDayDiscountPaisa = SalesRecordManager.getInstance().getOneDayTotalDiscount(date);
 
@@ -41,10 +38,9 @@ public class OneDaySalesFragment extends Fragment {
 		NumberFormat format = NumberFormat.getInstance();
 		format.setMaximumFractionDigits(2);
 		
-		oneDaySalesView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDaySalesPaisa)) + getString(R.string.currency_india));
-		oneDayRevenueView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDayRevenuePaisa)) + getString(R.string.currency_india));
-		oneDayDiscountView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDayDiscountPaisa)) + getString(R.string.currency_india));
-		oneDayNetProfitView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDayNetProfitPaisa)) + getString(R.string.currency_india));
+		oneDaySalesView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDaySalesPaisa)));
+		oneDayDiscountView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDayDiscountPaisa)));
+		oneDayNetProfitView.setText(format.format(WomanShopFormatter.convertPaisaToRupee(oneDayNetProfitPaisa)));
 		
 		return v;
 	}

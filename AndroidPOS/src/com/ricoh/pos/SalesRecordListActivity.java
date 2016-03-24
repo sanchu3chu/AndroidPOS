@@ -5,12 +5,16 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ricoh.pos.model.SalesCalenderManager;
 import com.ricoh.pos.model.SalesRecordManager;
 import com.ricoh.pos.model.WomanShopSalesIOManager;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 
 public class SalesRecordListActivity extends FragmentActivity implements
@@ -19,10 +23,31 @@ public class SalesRecordListActivity extends FragmentActivity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_salesrecord_list);
+		setContentView(R.layout.activity_oneday_trends_in_sales);
+
+		Date date=SalesCalenderManager.getInstance().getSelectedDate();
+
+		SimpleDateFormat sdf = new SimpleDateFormat(getString(R.string.E), Locale.US);
+		TextView aDayOfTheWeek = (TextView) findViewById(R.id.aDayOfTheWeek);
+		aDayOfTheWeek.setText(sdf.format(date));
+
+		sdf = new SimpleDateFormat(getString(R.string.d_MMM), Locale.US);
+		TextView dayAndMonth = (TextView) findViewById(R.id.dayAndMonth);
+		dayAndMonth.setText(sdf.format(date));
+
+		sdf = new SimpleDateFormat(getString(R.string.yyyy), Locale.US);
+		TextView year = (TextView) findViewById(R.id.year);
+		year.setText(sdf.format(date));
+
+		sdf = new SimpleDateFormat(getString(R.string.HH_mm), Locale.US);
+		TextView time = (TextView) findViewById(R.id.time);
+		time.setText(sdf.format(date));
+
+		OneDaySalesFragment oneDaySalesFragment = new OneDaySalesFragment();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.oneday_sales_container, oneDaySalesFragment).commit();
 
 		if (findViewById(R.id.salesrecord_list) != null) {
-
 			((SalesRecordListFragment) getSupportFragmentManager()
 					.findFragmentById(R.id.salesrecord_list))
 					.setActivateOnItemClick(true);
@@ -31,28 +56,13 @@ public class SalesRecordListActivity extends FragmentActivity implements
 		SalesRecordDetailFragment fragment = new SalesRecordDetailFragment();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.salesrecord_detail_container, fragment).commit();
-
-		// add OneDeySalesFragment
-		OneDaySalesFragment oneDaySalesFragment = new OneDaySalesFragment();
-		getSupportFragmentManager().beginTransaction()
-				.replace(R.id.oneday_sales_container, oneDaySalesFragment).commit();
-
-		// TODO: If exposing deep links into your app, handle intents here.
 	}
 
-	/**
-	 * Callback method from {@link CategoryListFragment.Callbacks} indicating
-	 * that the item with the given ID was selected.
-	 */
 	@Override
 	public void onItemSelected(String id) {
 		replaceFragment();
 	}
 
-	/**
-	 * Callback method from {@link CategoryListFragment.Callbacks} indicating
-	 * that the item with the given ID was long selected.
-	 */
 	@Override
 	public void onItemLongSelected(Date id) {
 		showDeleteDialog(id);
@@ -70,13 +80,12 @@ public class SalesRecordListActivity extends FragmentActivity implements
 		alert.setMessage(getString(R.string.sales_record_delete_confirm_message) + "\n" + date);
 		alert.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
 			public void onClick(DialogInterface dialog, int which) {
-				// When no records exist, go to the calender activiry.
 				SalesRecordListActivity.this.finish();
 				int delete = WomanShopSalesIOManager.getInstance().deleteSingleSalesRecordRelatedTo(date);
 				if (delete == 0) {
 					Toast.makeText(SalesRecordListActivity.this, R.string.error_deleted_message, Toast.LENGTH_LONG).show();
 				} else {
-				    if (SalesRecordManager.getInstance().restoreSingleSalesRecordsOfTheDay(date).size() > 0) { 
+				    if (SalesRecordManager.getInstance().restoreSingleSalesRecordsOfTheDay(date).size() > 0) {
 						startActivity((new Intent(SalesRecordListActivity.this, SalesRecordListActivity.class)));
 					}
 					Toast.makeText(SalesRecordListActivity.this, R.string.success_deleted_message, Toast.LENGTH_LONG).show();

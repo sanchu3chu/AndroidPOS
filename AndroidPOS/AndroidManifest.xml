@@ -67,6 +67,10 @@
             android:name=".LicenseActivity"
             android:screenOrientation="landscape" >
         </activity>
+        <activity
+            android:name=".WeeklyTrendsInSalesActivity"
+            android:screenOrientation="landscape" >
+        </activity>
     </application>
 
 </manifest>

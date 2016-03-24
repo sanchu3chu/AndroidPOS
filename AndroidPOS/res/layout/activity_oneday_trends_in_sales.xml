@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:baselineAligned="false"
+              android:orientation="vertical"
+              tools:context=".SalesRecordListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:baselineAligned="false"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/one_sale_margin_20dp"
+            android:layout_marginLeft="@dimen/one_sale_margin_20dp"
+            android:layout_marginRight="@dimen/one_sale_margin_20dp"
+            android:layout_marginTop="@dimen/one_sale_margin_20dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/aDayOfTheWeek"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/android_pos_font_light"
+                    android:textSize="@dimen/one_day_sales_text_size"/>
+
+                <TextView
+                    android:id="@+id/dayAndMonth"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/android_pos_font_light"
+                    android:textColor="#00BFA5"
+                    android:textSize="@dimen/one_day_sales_text_size3"/>
+
+                <TextView
+                    android:id="@+id/year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/android_pos_font_light"
+                    android:textSize="@dimen/one_day_sales_text_size"/>
+            </LinearLayout>
+
+            <FrameLayout
+                android:id="@+id/oneday_sales_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </FrameLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/divider_height"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/one_sale_margin_20dp"
+            android:layout_marginTop="@dimen/one_sale_margin_20dp"
+            android:background="@color/gray"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/one_sale_margin_20dp"
+            android:layout_marginLeft="@dimen/one_sale_margin_20dp"
+            android:layout_marginRight="@dimen/one_sale_margin_20dp"
+            android:layout_marginTop="@dimen/one_sale_margin_20dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@string/android_pos_font_thin"
+                android:text="@string/time"
+                android:textSize="@dimen/one_day_sales_text_size2"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/gray"/>
+
+            <fragment
+                android:id="@+id/salesrecord_list"
+                android:name="com.ricoh.pos.SalesRecordListFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                tools:layout="@layout/list_content_sales_time"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="@dimen/divider_height"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/one_sale_margin_20dp"
+            android:layout_marginTop="@dimen/one_sale_margin_20dp"
+            android:background="@color/gray"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="@dimen/one_sale_margin_20dp"
+            android:layout_marginLeft="@dimen/one_sale_margin_20dp"
+            android:layout_marginRight="@dimen/one_sale_margin_20dp"
+            android:layout_marginTop="@dimen/one_sale_margin_20dp"
+            android:layout_weight="4"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/android_pos_font_thin"
+                    android:text="@string/purchased_at"
+                    android:textSize="@dimen/one_day_sales_text_size2"/>
+
+                <TextView
+                    android:id="@+id/time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@string/android_pos_font_thin"
+                    android:textSize="@dimen/one_day_sales_text_size2"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider_height"
+                android:background="@color/gray"/>
+
+            <FrameLayout
+                android:id="@+id/salesrecord_detail_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
