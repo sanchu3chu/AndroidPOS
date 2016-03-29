@@ -19,10 +19,6 @@
     <string name="discount_error">Discount must be less than the profit.</string>
     <string name="discount">Discount</string>
     <string name="zero_order_error">Input number of products</string>
-    <string name="title_oneday_total_sales">Sales</string>
-    <string name="title_oneday_total_revenue">Revenue</string>
-    <string name="title_oneday_total_discount">Discount</string>
-    <string name="title_oneday_total_profit">Profit</string>
     <string name="title_delete">Delete sales record</string>
     <string name="undiscounted_price">Total price before discount</string>
     <string name="success_deleted_message">Succeeded to delete sales record</string>
@@ -94,9 +90,13 @@
     <string name="no_data">Nothing...</string>
     <string name="price_sales">Price : </string>
     <string name="time">Time</string>
-    <string name="purchased_at">Purchased goods list / </string>
+    <string name="purchased_at">Purchased goods list at  </string>
     <string name="weekly_data">Weekly Data</string>
     <string name="prev">＜ Prev</string>
     <string name="next">Next ＞</string>
+    <string name="title_oneday_total_sales">Sales</string>
+    <string name="title_oneday_total_revenue">Revenue</string>
+    <string name="title_oneday_total_discount">Discount</string>
+    <string name="title_oneday_total_profit">Profit</string>
     <!--ここまで-->
 </resources>

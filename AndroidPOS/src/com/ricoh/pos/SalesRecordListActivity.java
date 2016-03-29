@@ -41,7 +41,7 @@ public class SalesRecordListActivity extends FragmentActivity implements
 
 		sdf = new SimpleDateFormat(getString(R.string.HH_mm), Locale.US);
 		TextView time = (TextView) findViewById(R.id.time);
-		time.setText(sdf.format(date));
+		time.setText(sdf.format(SalesRecordManager.getInstance().restoreSingleSalesRecordsOfTheDay(date).get(0).getSalesDate()));
 
 		OneDaySalesFragment oneDaySalesFragment = new OneDaySalesFragment();
 		getSupportFragmentManager().beginTransaction()

@@ -18,10 +18,6 @@
     <string name="discount_error">छूट दी गयी राशि की जाँच करे ये मूल कीमत से ज्यादा  है</string>
     <string name="discount">छूट</string>
     <string name="zero_order_error">उत्पादों की संख्या डाले</string>
-    <string name="title_oneday_total_sales">कुल बिरी</string>
-    <string name="title_oneday_total_revenue">कुल लाभ</string>
-    <string name="title_oneday_total_discount">कुल छूट</string>
-    <string name="title_oneday_total_net_profit">कुल शुद्ध लाभ</string>
     <string name="title_delete">बिक्री के रिकॉर्ड को हटा दे</string>
     <string name="undiscounted_price">छूट से पहले कुल कीमत</string>
     <string name="success_deleted_message">बिक्री रिकॉर्ड को हटाने में सफल रहे</string>
@@ -40,7 +36,11 @@
     <string name="user_attribute_label">विशेषता</string>
     <string name="close">close</string>
     <string name="error_image_file_not_found">Product image is not found.</string>
-
     <string name="dialog_title_edit_number_of_order">Edit</string>
-
+    <!--既存のもの変更したので、訳す必要があるかも-->
+    <string name="title_oneday_total_sales">कुल बिरी</string>
+    <string name="title_oneday_total_revenue">कुल लाभ</string>
+    <string name="title_oneday_total_discount">कुल छूट</string>
+    <string name="title_oneday_total_profit">कुल शुद्ध लाभ</string>
+    <!--ここまで-->
 </resources>

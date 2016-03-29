@@ -19,4 +19,9 @@
     <dimen name="one_day_sales_text_size4">24dp</dimen>
     <dimen name="divider_height">1px</dimen>
     <dimen name="little_margin">5dp</dimen>
+    <dimen name="graph_label">17dp</dimen>
+    <dimen name="graph_radius_size">10dp</dimen>
+    <dimen name="graph_axis_label_space">20dp</dimen>
+    <dimen name="graph_line_thickness">5dp</dimen>
+    <dimen name="graph_line_interval">10dp</dimen>
 </resources>

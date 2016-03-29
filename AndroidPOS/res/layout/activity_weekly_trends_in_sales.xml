@@ -13,11 +13,11 @@
         <TextView
             android:id="@+id/previous_week"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/one_sale_margin_10dp"
             android:fontFamily="@string/android_pos_font_thin"
-            android:gravity="bottom|center"
+            android:gravity="center_vertical|center"
             android:text="@string/prev"
             android:textSize="@dimen/one_day_sales_text_size4"/>
 
@@ -83,11 +83,11 @@
         <TextView
             android:id="@+id/next_week"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center_vertical"
             android:layout_marginRight="@dimen/one_sale_margin_10dp"
             android:fontFamily="@string/android_pos_font_thin"
-            android:gravity="center"
+            android:gravity="center_vertical|center"
             android:text="@string/next"
             android:textSize="@dimen/one_day_sales_text_size4"/>
 

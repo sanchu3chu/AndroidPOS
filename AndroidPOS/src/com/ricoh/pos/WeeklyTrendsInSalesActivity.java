@@ -5,12 +5,10 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.db.chart.Tools;
 import com.db.chart.listener.OnEntryClickListener;
 import com.db.chart.model.LineSet;
 import com.db.chart.view.LineChartView;
@@ -39,6 +37,7 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 	final static int afterSevenDays = 7;
 	final static int beforeSevenDays = -7;
 	final static int beforeSixDays = -6;
+	private boolean mIsClickEvent;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,11 +48,6 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 
 		this.targetDate = new Date();
 		cal.setTime(this.targetDate);
-
-		setWeeklyData(getWeeklyData());
-		setDateDataTexts();
-		createGraph(getWeeklyData());
-		chart.show();
 
 		TextView nextWeek = (TextView) findViewById(R.id.next_week);
 		nextWeek.setOnClickListener(new View.OnClickListener() {
@@ -194,34 +188,36 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 			maxValLongVal = Math.max(maxValLongVal, dailyDataList.get(i).getSales());
 		}
 
-		int lineColor = Color.parseColor(getString(R.string.graph_color));
-		int lineThickness = 5;
-		dataSet.setColor(lineColor);
-		dataSet.setThickness(Tools.fromDpToPx(lineThickness));
-		dataSet.setDashed(new float[]{30, 30});
-		dataSet.setDotsRadius(20f);
+		dataSet.setColor(Color.parseColor(getString(R.string.graph_color)));
+		dataSet.setThickness(getResources().getDimensionPixelSize(R.dimen.graph_line_thickness));
+		dataSet.setDashed(new float[]{getResources().getDimensionPixelSize(R.dimen.graph_line_interval), getResources().getDimensionPixelSize(R.dimen.graph_line_interval)});
+		dataSet.setDotsRadius(getResources().getDimensionPixelSize(R.dimen.graph_radius_size));
 		dataSet.setDotsColor(Color.parseColor(getString(R.string.graph_color)));
 
 		chart.addData(dataSet);
 
 		chart.setYAxis(false);
 		chart.setAxisColor(Color.LTGRAY);
-		chart.setFontSize(25);
-		chart.setAxisLabelsSpacing(50f);
+
+		chart.setFontSize(getResources().getDimensionPixelSize(R.dimen.graph_label));
+		chart.setAxisLabelsSpacing(getResources().getDimensionPixelSize(R.dimen.graph_axis_label_space));
 		chart.setLabelsColor(Color.GRAY);
 
 		int maxVal = (int) Math.ceil(WomanShopFormatter.convertPaisaToRupee(maxValLongVal));
 		int numberOfDigits = (String.valueOf(maxVal)).length();
 		int step = (int) Math.pow(10, numberOfDigits - 1);
-		int graphMaxVal = (Integer.parseInt(String.valueOf(maxVal).substring(0, 1)) + 1) * step;
+		BigDecimal result = new BigDecimal(maxVal);
+		int graphMaxVal = (result.scaleByPowerOfTen(-numberOfDigits + 1).intValue() + 1) * step;
 
 		if (graphMaxVal <= 10) {
 			chart.setAxisBorderValues(0, 10);
-			chart.setStep(2);
+			chart.setStep(5);
 		} else {
 			chart.setAxisBorderValues(0, graphMaxVal);
-			chart.setStep(step);
+			chart.setStep(graphMaxVal / 2);
 		}
+
+		final Toast toast = Toast.makeText(WeeklyTrendsInSalesActivity.this, getString(R.string.no_data), Toast.LENGTH_SHORT);
 
 		chart.setOnEntryClickListener(new OnEntryClickListener() {
 			@Override
@@ -231,9 +227,12 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 						SalesRecordManager.getInstance().restoreSingleSalesRecordsOfTheDay(dailyDataList.get(entryIndex).getDate());
 
 				if (salesRecordsOfTheDay.size() == 0) {
-					Toast.makeText(WeeklyTrendsInSalesActivity.this, getString(R.string.no_data), Toast.LENGTH_SHORT).show();
+					toast.show();
 					return;
 				}
+
+				if (mIsClickEvent) return;
+				mIsClickEvent = true;
 
 				SalesCalenderManager.getInstance().setSelectedDate(dailyDataList.get(entryIndex).getDate());
 
@@ -241,17 +240,6 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 				startActivity(intent);
 			}
 		});
-	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-
-		setWeeklyData(getWeeklyData());
-		setDateDataTexts();
-		chart.dismiss();
-		createGraph(getWeeklyData());
-		chart.show();
 	}
 
 	/**
@@ -266,5 +254,18 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 	private static float convertPaisaToFloatRupee(long paisa) {
 		BigDecimal result = new BigDecimal(paisa);
 		return result.scaleByPowerOfTen(-2).floatValue();
+	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+
+		mIsClickEvent = false;
+
+		setWeeklyData(getWeeklyData());
+		setDateDataTexts();
+		chart.dismiss();
+		createGraph(getWeeklyData());
+		chart.show();
 	}
 }

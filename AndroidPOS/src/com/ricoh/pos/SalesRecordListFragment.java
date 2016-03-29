@@ -178,9 +178,6 @@ public class SalesRecordListFragment extends ListFragment {
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
 
-//		Date date = SalesCalenderManager.getInstance().getSelectedSalesDate();
-
-
 		Date clickedDate = this.oneDaySalesRecords.get(position).getSalesDate();
 		SalesCalenderManager.getInstance().setSelectedSalesDate(clickedDate);
 
@@ -223,5 +220,4 @@ public class SalesRecordListFragment extends ListFragment {
 
 		mActivatedPosition = position;
 	}
-
 }
