@@ -60,10 +60,10 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 				targetDate = lastDateOfPreviousWeek.getTime();
 				cal.setTime(targetDate);
 
-				setWeeklyData(getWeeklyData());
+				setWeeklyData(SalesRecordManager.getInstance().getWeeklyData(targetDate));
 				setDateDataTexts();
 				chart.dismiss();
-				createGraph(getWeeklyData());
+				createGraph(SalesRecordManager.getInstance().getWeeklyData(targetDate));
 				chart.show();
 			}
 		});
@@ -79,10 +79,10 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 				targetDate = lastDateOfNextWeek.getTime();
 				cal.setTime(targetDate);
 
-				setWeeklyData(getWeeklyData());
+				setWeeklyData(SalesRecordManager.getInstance().getWeeklyData(targetDate));
 				setDateDataTexts();
 				chart.dismiss();
-				createGraph(getWeeklyData());
+				createGraph(SalesRecordManager.getInstance().getWeeklyData(targetDate));
 				chart.show();
 			}
 		});
@@ -141,33 +141,6 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 
 		TextView weeklyProfit = (TextView) findViewById(R.id.weekly_profit);
 		weeklyProfit.setText(format.format(WomanShopFormatter.convertPaisaToRupee(totalProfit)));
-	}
-
-	/**
-	 * 一日の総売り上げ、総値引き額、総利益を取得し、一週間分のリスト化する。
-	 *
-	 * @return dailyDataList
-	 */
-	private List<DailyData> getWeeklyData() {
-
-		List<DailyData> dailyDataList = new ArrayList<DailyData>();
-		salesRecordManager = salesRecordManager.getInstance();
-
-		for (int i = 0; i <= 6; i++) {
-
-			cal.add(Calendar.DAY_OF_MONTH, -1 * i);
-
-			DailyData dailyData = new DailyData();
-			dailyData.setDate(cal.getTime());
-			dailyData.setSales(salesRecordManager.getOneDayTotalSales(cal.getTime()));
-			dailyData.setDiscount(salesRecordManager.getOneDayTotalDiscount(cal.getTime()));
-			dailyData.setProfit(salesRecordManager.getOneDayTotalNetProfit(cal.getTime()));
-			dailyDataList.add(dailyData);
-
-			cal.add(Calendar.DAY_OF_MONTH, i);
-		}
-
-		return dailyDataList;
 	}
 
 	/**
@@ -262,10 +235,10 @@ public class WeeklyTrendsInSalesActivity extends Activity {
 
 		mIsClickEvent = false;
 
-		setWeeklyData(getWeeklyData());
+		setWeeklyData(SalesRecordManager.getInstance().getWeeklyData(targetDate));
 		setDateDataTexts();
 		chart.dismiss();
-		createGraph(getWeeklyData());
+		createGraph(SalesRecordManager.getInstance().getWeeklyData(targetDate));
 		chart.show();
 	}
 }

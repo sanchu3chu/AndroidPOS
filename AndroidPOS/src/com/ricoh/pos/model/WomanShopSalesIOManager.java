@@ -233,6 +233,55 @@ public class WomanShopSalesIOManager implements IOManager {
 		return sales;
 	}
 
+	/**
+	 * 日付けを指定して、その日から一週間前まえまでの検索を実施
+	 *
+	 * @param date 日付け
+	 * @return dailyDataList一日の総売り上げ、総合値引き額、総利益の一週分のリスト
+	 */
+	public ArrayList<SingleSalesRecord> searchWeeklyDataByDate(Date date) {
+
+		Cursor cursor = null;
+		SQLiteQueryBuilder query = new SQLiteQueryBuilder();
+		query.setTables(
+				SalesDatabaseHelper.WS_SALES_TABLE_NAME +
+						" left join " +
+						SalesDatabaseHelper.WS_SALES_ORDER_TABLE_NAME +
+						" on " +
+						SalesDatabaseHelper.WS_SALES_TABLE_NAME +
+						".ROWID = " + JoinedTable.COLUMNS[JoinedTable.Order.SINGLE_SALES_ID]
+		);
+
+		//検索の開始日
+		Calendar startDay = Calendar.getInstance();
+		startDay.setTime(date);
+		startDay.add(Calendar.DAY_OF_MONTH, -6);
+		startDay.set(Calendar.HOUR, 0);
+		startDay.set(Calendar.MINUTE, 0);
+		startDay.set(Calendar.SECOND, 0);
+		startDay.set(Calendar.MILLISECOND, 0);
+
+		//検索の終了日、つまり、引数date
+		Calendar endDay = Calendar.getInstance();
+		endDay.setTime(date);
+		endDay.set(Calendar.HOUR, 23);
+		endDay.set(Calendar.MINUTE, 59);
+		endDay.set(Calendar.SECOND, 59);
+		endDay.set(Calendar.MILLISECOND, 0);
+
+
+		String[] params = {DATE_FORMAT.format(startDay.getTime()), DATE_FORMAT.format(endDay.getTime())};
+
+		cursor = query.query(salesDatabase, JoinedTable.COLUMNS,
+				JoinedTable.COLUMNS[JoinedTable.Sale.DATE] + " >= ? and " + JoinedTable.COLUMNS[JoinedTable.Sale.DATE] + "<= ?",
+				params, null, null, null, null);
+
+
+		ArrayList<SingleSalesRecord> sales = makeSalesList(cursor);
+		cursor.close();
+		return sales;
+	}
+
 	private ArrayList<SingleSalesRecord> makeSalesList(Cursor cursor) {
 		ArrayList<SingleSalesRecord> sales = new ArrayList<SingleSalesRecord>();
 
